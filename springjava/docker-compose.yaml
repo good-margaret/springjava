@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_container
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: bad00marigo
+      POSTGRES_DB: bank_bd
+    ports:
+      - "5433:5433"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    image: openjdk:17-jdk-alpine
+    container_name: tishchenkomv_lab_app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5433/bank_bd
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: bad00marigo
+    ports:
+      - "8081:8080"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+    driver: local
