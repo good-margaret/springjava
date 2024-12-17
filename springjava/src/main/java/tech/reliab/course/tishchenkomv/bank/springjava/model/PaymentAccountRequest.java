@@ -10,5 +10,4 @@ public class PaymentAccountRequest {
     private int bank_id;
     private int user_id;
     private double balance;
-
 }

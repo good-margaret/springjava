@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import tech.reliab.course.tishchenkomv.bank.springjava.SpringjavaApplication;
 import tech.reliab.course.tishchenkomv.bank.springjava.entity.Bank;
 import tech.reliab.course.tishchenkomv.bank.springjava.repository.BankRepository;
 
@@ -19,6 +21,7 @@ import static org.mockito.Mockito.*;
 
 import tech.reliab.course.tishchenkomv.bank.springjava.service.impl.BankServiceImpl;
 
+@SpringBootTest(classes = SpringjavaApplication.class)
 class BankServiceTest {
 
     @Mock
