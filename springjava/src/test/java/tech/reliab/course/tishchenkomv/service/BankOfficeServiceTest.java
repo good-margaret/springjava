@@ -1,11 +1,23 @@
 package tech.reliab.course.tishchenkomv.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.Order;
+import org.springframework.test.context.ContextConfiguration;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import tech.reliab.course.tishchenkomv.bank.springjava.SpringjavaApplication;
 import tech.reliab.course.tishchenkomv.bank.springjava.entity.Bank;
 import tech.reliab.course.tishchenkomv.bank.springjava.entity.BankOffice;
@@ -14,6 +26,7 @@ import tech.reliab.course.tishchenkomv.bank.springjava.model.BankOfficeRequest;
 import tech.reliab.course.tishchenkomv.bank.springjava.repository.BankOfficeRepository;
 import tech.reliab.course.tishchenkomv.bank.springjava.service.BankService;
 import tech.reliab.course.tishchenkomv.bank.springjava.service.impl.BankOfficeServiceImpl;
+import tech.reliab.course.tishchenkomv.container.TestContainerConfig;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -25,12 +38,14 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest(classes = SpringjavaApplication.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ContextConfiguration(classes = {TestContainerConfig.class})
 class BankOfficeServiceTest {
 
-    @Mock
+    @Autowired
     private BankOfficeRepository bankOfficeRepository;
 
-    @Mock
+    @Autowired
     private BankService bankService;
 
     @InjectMocks

@@ -1,6 +1,16 @@
 package tech.reliab.course.tishchenkomv.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.annotation.Order;
+import org.springframework.test.context.ContextConfiguration;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -20,14 +30,17 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 import tech.reliab.course.tishchenkomv.bank.springjava.service.impl.BankServiceImpl;
+import tech.reliab.course.tishchenkomv.container.TestContainerConfig;
 
 @SpringBootTest(classes = SpringjavaApplication.class)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ContextConfiguration(classes = {TestContainerConfig.class})
 class BankServiceTest {
 
-    @Mock
+    @Autowired
     private BankRepository bankRepository;
 
-    @InjectMocks
+    @Autowired
     private BankServiceImpl bankService;
 
     private Bank testBank;
